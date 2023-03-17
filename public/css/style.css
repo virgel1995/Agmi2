@@ -35,13 +35,13 @@ a {
   stroke-dasharray: 0;
 }
 
-.sec-card{
+.sec-card , .c-form > *{
 	background: #fff;
 	color: black;
 	
   transition: 1.3s;
 }
-.sec-card:hover {
+.sec-card:hover, .c-form > *:hover {
 	background: rgb(151,120,209);
 	color: #fff;
 }
@@ -52,7 +52,9 @@ a {
 }
 
 
-
+.spin-hide {
+	display:none;
+}
 
 /**  Loader */
 .center-loader {

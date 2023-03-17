@@ -1,10 +1,12 @@
 
-<form action = "/api/section/create" method= "post" id= "createSection">
+<form method= "post" id= "createSection" class ="c-form">
 	
   <div class="mb-3">
-    <input type="text" class="form-control" placeholder= "Section Name" name= "section">
-	</div>
-	
-  <button type="submit" class="btn btn-primary"  onClick="createSection(event)">Submit</button>
+			<div class="input-group">
+    <input type="text" class="form-control bg-dark text-light" placeholder= "Section Name" name= "section">
+  <button type="submit" class="btn btn-outline-dark"  onClick="createSection()">Create Section</button>
+			</div>
+			</div>
+
 </form>
 	

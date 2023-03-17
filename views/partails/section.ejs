@@ -1,21 +1,33 @@
 
 
+<% sections.map(async(sec) =>{ %>
 
- <div class="container section">
-
+ <div class="container-fluid section">
 <div class="row">
 	<div class= "text-center">
-		 <h1 class= "section-name"> Main Section</h1>
+		 <h1 class= "section-name"> <%= sec.name %>
+		 </h1>
 	</div>
-     <div class="col-md-6">
-			 
-<div class="card sec-card text-bg-dark mb-3" style="max-width: 18rem;">
 
+
+   <% sec.urls.map(url =>{ %>
+		 <!-- start col -->
+			 
+     <div class="col-md-6">
+
+	<!-- card  start -->
+<div class="card sec-card text-bg-dark mb-3" style="max-width: 18rem;">
+		<!-- card body start -->
   <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-		<img class= "sec-img mt-2" src= "/images/faded.jpg" >
-		<hr style= "width: 50px; margin-left: 5px;" />
 		
+				<!-- card title start -->
+    <h5 class="card-title">
+			<%= url.title %>
+		</h5>
+		<img class= "sec-img mt-2" src= "<%= url.image %>" >
+		<hr style= "width: 50px; margin-left: 5px;" />
+
+		<!-- card title end and  text start -->
     <div class="card-text">
 
 
@@ -23,8 +35,8 @@
 <p class= "sec-mail-text">
 	EMAIL:  
 </p>
-<a href= "#" class= "sec-mail-url">
-url 
+<a href= "<%= url.email %>" class= "sec-mail-url">
+<%= url.email %>
 </a>
 </div>
 
@@ -34,13 +46,23 @@ url
 	PASSWORD:  
 </p>
 <p class= "sec-pass-val">
-url 
+<%= url.password %> 
 </p>
 			</div>
 
 
 		</div>
+		
 	</div>
                 </div>
+<!-- end card -->
+			 
 		 </div>
+<!-- end col -->
+			 
+
+		<% }) %>
+			 
+
 				</div>
+		<% }) %>

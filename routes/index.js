@@ -3,21 +3,17 @@ var router = express.Router();
 
 const User = require('../database/Schemas/User.js');
 const Section = require('../database/Schemas/Sections.js');
-const Urls = require("../database/Schemas/Urls");
 
 const { isAdmin } = require('../utils.js');
 
 /* GET home page. */
-router.get('/home', async function(req, res) {
-	//res.render("index")
-
-const url = await Urls.find({})
+router.get('/', async function(req, res) {
 const section = await Section.find({})
+
 		res.render('index', {
 			title: 'Main Page',
 			//user: user,
 			session: req.session,
-			urls: url,
 			sections: section
 		})
 	
@@ -25,12 +21,23 @@ const section = await Section.find({})
 });
 
 
-router.get("/", function(req, res, next) {
+router.get("/login", function(req, res, next) {
 	res.render('login', { title: 'Login Page', session: req.session });
 	res.end();
 })
 
-
+router.get('/home', async function(req, res) {
+const section = await Section.find({})
+//const user = await User.find(req.session.user._id)
+		res.render('index', {
+			title: 'Main Page',
+			//user: user,
+			session: req.session,
+			sections: section
+		})
+	
+	res.end();
+});
 
 
 module.exports = router;

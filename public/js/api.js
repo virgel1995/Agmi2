@@ -25,6 +25,7 @@ const getUsers = () => {
 *@GET 
 * SECTION DATA
 */
+/*
 const getSections = () =>{
 
 	  axios
@@ -35,12 +36,13 @@ const getSections = () =>{
     })
     .catch((error) => console.error(error));
 }
-
-
+getSections();
+*/
 /** 
 *@GET 
 * SECTION_URL DATA
 */
+/*
 const getUrls = () =>{
 	  axios
     .get(`/api/section/url`) 
@@ -51,13 +53,13 @@ const getUrls = () =>{
     .catch((error) => console.error(error));
 }
 
-
+*/
 
 /** 
 * @GET
 * USER FIND
 */
-
+/*
 const findUser = (id) => {
   axios
     .get(`/api/user/${id}`)
@@ -70,13 +72,14 @@ const findUser = (id) => {
     .catch((error) => console.error(error));
 };
 
-
+*/
 //-------- Createing --------//
 /** 
 *@POST 
 * CREATE NEW USER
 * /api/user/create
 */
+/*
 const createUser = (event) => {
 event.preventDefault();
 
@@ -91,35 +94,41 @@ event.preventDefault();
         },
       })
       .then((res) => {
-        console.log(res);
+				console.log(res.data)
+window.location.replace('/home');
+
       })
       .catch((err) => {
         console.log(err);
       });
   });
 }
-
+*/
 
 /** 
 *@POST 
 * CREATE NEW SECTION
 * /api/section/create
 */
-const createSection = (event) => {
-event.preventDefault();
 
+const createSection = () => {
+//event.preventDefault();
  const form = document.querySelector("#createSection");
+	const text = document.getElementById("uploader")
+text.style.display = "block"
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
+	
     axios
-      .post("/api/section/create", formData, {
+      .post("/section/create", formData, {
         headers: {
 "Content-Type":"application/json"
         },
       })
       .then((res) => {
-        console.log(res);
+		toaster("Section Created", "Successfully Created New Section")
+				//console.log(res.data)
+window.location.replace('/home');
       })
       .catch((err) => {
         console.log(err);
@@ -132,27 +141,34 @@ event.preventDefault();
 * CREATE NEW SECTION URL
 * /api/section/url/create
 */
-const createUrl = (event) => {
-event.preventDefault();
+const createUrl = () => {
+//event.preventDefault();
 
    const form = document.querySelector("#createUrl");
+		const text = document.getElementById("uploader")
+text.style.display = "block"
+	
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     axios
-      .post("/api/section/url/create", formData, {
+      .post("/url/create", formData, {
         headers: {
 "Content-Type":"application/json",
 "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
-        console.log(res);
+				//console.log(res.data)
+toaster("Url Created", "Successfully Created New Url")
+				window.location.replace('/home');
+
       })
       .catch((err) => {
         console.log(err);
       });
   });
+	
 }
 
 
@@ -161,6 +177,7 @@ event.preventDefault();
 * Login
 * /api/user/login
 */
+
 const login = (event) => {
 event.preventDefault();
 
@@ -168,15 +185,20 @@ event.preventDefault();
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-   const result =  axios.post("/api/user/login", formData, {
+axios.post("/user/login", formData, {
         headers: {
 "Content-Type":"application/json"
         },
+      }).then((res) => {
+				//console.log(res.data)
+toaster("Login", "Successfully Loged In")
+		 
+storage.setItem("user", res.data);
+				window.location.replace('/home');
+
       })
-const data = result.data
- console.log(result.data);
-	storage.setItem("user", res.data);
-//window.location.replace('/home');
-      
-  });
+      .catch((err) => {
+        console.log(err);
+      });
+})
 }

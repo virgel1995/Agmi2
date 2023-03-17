@@ -1,15 +1,47 @@
 <%- include("partails/head.ejs") %>
 
 	
-<div class="container">
-	<%- include("partails/loader.ejs") %>
+<div class="container-fluid">
+	<div class= "row">
+				<!-- start col 4 -->
+<div class="col-md-4">
 
+
+	
+	<div class="creat-url" >
+	<!--		
+<%- include("partails/createurl.ejs", {
+	sections: sections
+}) %>-->
+	</div>
+
+	<div class="creat-sec" >
+	<!--
+<%- include("partails/createsec.ejs") %>
+	-->
+		</div>
+
+	<div class="creat-user" >
+		<!--
+<%- include("partails/createuser.ejs") %>
+-->
+	</div>
+
+
+</div>
+		<!-- end col 4  and start col 8-->
+	<div class="col-md-8" >
+<%- include("partails/section.ejs", {
+	sections: sections
+}) %>
+	
+	</div>
+				<!-- end col 8 -->
 		
-<%- include("partails/section.ejs") %>
-
 </div>
 
 
+</div>
 	
 
 <%- include("partails/footer.ejs") %>

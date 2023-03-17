@@ -1,17 +1,17 @@
 
-<form action = "/api/section/url/create" method= "post" enctype="multipart/form-data" id ="createUrl">
-  <div class="mb-3">
-    <input type="text" class="form-control" placeholder= "Title" name= "title">
+<form  method= "post" enctype="multipart/form-data" id ="createUrl" class ="c-form">
+  <div class="">
+    <input type="text" class="form-control bg-dark text-light" placeholder= "Title" name= "title">
   </div>
-  <div class="mb-3">
-    <input type="email" class="form-control" placeholder= "Email" name= "email">
+  <div class="">
+    <input type="email" class="form-control bg-dark text-light" placeholder= "Email" name= "email">
   </div>
 
- <div class="input-group mb-3">
-  <label class="input-group-text">Section</label>
-  <select class="form-select" name = "section">
+ <div class="input-group  bg-dark text-light">
+  <label class="input-group-text  bg-dark text-light">Section</label>
+  <select class="form-select bg-dark text-light" name = "section">
 	<% sections.map((section, index) => { -%>
-    <option value="<%= section.id %>">
+    <option class=" bg-dark text-light" value="<%= section.id %>">
 			<%= section.name %>
 		</option>
 
@@ -19,17 +19,18 @@
   </select>
 </div>
 
-				<div class="input-group mb-3">
-  <label class="input-group-text" for="inputGroupFile01">Upload</label>
-  <input type="file" class="form-control" name= "image" id="inputGroupFile01">
+				<div class="input-group bg-dark text-light">
+  <label class="input-group-text bg-dark text-light" for="inputGroupFile01">Upload</label>
+  <input type="file" class="form-control bg-dark text-light" name= "image" id="inputGroupFile01">
 				</div>
 				
-	
-	  <div class="mb-3">
-    <input type="text" class="form-control" placeholder= "Password" name= "password">
-  </div>
-	
-
-  <button type="submit" class="btn btn-primary" onClick="createUrl(event)">Submit</button>
+	<div class="spin-hide" id="uploader" >
+		<%- include("spin.ejs") %>
+	</div>
+		<div class="input-group">
+	<input type="text" class="form-control bg-dark text-light" placeholder= "Password" name= "password">
+<button type="submit" class="btn btn-outline-dark" id="createingUrl" onClick="createUrl()">Create Url</button>
+				</div>
+  
 </form>
 	

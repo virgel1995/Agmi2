@@ -1,17 +1,11 @@
-const router = require("express").Router();
 
 const Section = require('../database/Schemas/Sections.js');
-const Urls = require("../database/Schemas/Urls");
+
 const { upload } = require("../utils");
 
 /**  Sections routes */
-router.get("/", async (req, res) => {
-	var section = await Section.find({})
-	res.status(200).send(section)
-})
 
-
-router.post("/create", async (req, res) => {
+ const createSection =  async (req, res) => {
 
 	try {
 		const section = new Section({
@@ -19,85 +13,38 @@ router.post("/create", async (req, res) => {
 		});
 
 		await section.save();
-		res.status(200).send(section)
-res.end()
-	} catch (error) {
+res.status(200).send(section)
+
+} catch (error) {
+		
 		console.log(error);
 	}
-});
+}
 
-router.post("/update/:id", async (req, res) => {
-	try {
-		const section = await Section.findById(req.params.id);
-		if (section) {
-			section.name = req.body.name
-			await section.save();
-			
-			res.status(200).send(section)
-		} else {
-			res.status(404).json({
-				message: "Sorry But section with this Id Not Found"
-			});
-		}
-		res.end()
-	} catch (error) {
-		console.log(error);
-	}
-});
+const createUrl =  async (req, res) => {
 
-
-
-
-
-/**  Url routes  */
-router.get("/url", async (req, res) => {
-	var url = await Urls.find({})
-	console.log(url)
-	res.status(200).send(url)
-	res.end()
-})
-
-router.post("/url/create", upload.single("image"), async (req, res) => {
 	const data = req.body;
-	console.log(data)
-	try {
-
-		const url = new Urls({
+try {
+const section = await Section.findById(data.section);
+    
+		const url = {
 			title: data.title,
 			email: data.email,
 			password: data.password,
-			section: data.sectionId,
 			image: `/images/uploads/${req.file.originalname
-				}`
-		});
-		await url.save();
-		res.status(200).send(url)
-		res.end();
+				}`														} ;
+section.urls.push(url)
+await section.save();
+	res.status(200).send(url)
 	} catch (error) {
+
 		console.log(error);
 	}
-});
+}
 
-router.post("/url/update/:id", async (req, res) => {
-	try {
-		const url = await url.findById(req.params.id);
-		if (url) {
 
-url.title = req.body.title
-url.email = req.body.email
-url.password = req.body.password
 
-			await url.save();
-		res.status(200).send(url)
-		} else {
-			res.status(404).json({
-				message: "Sorry But Url with this Id Not Found"
-			});
-		}
-		res.end()
-	} catch (error) {
-		console.log(error);
-	}
-});
-
-module.exports = router
+module.exports = {
+	createSection,
+	createUrl
+}
