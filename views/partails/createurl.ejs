@@ -1,0 +1,35 @@
+
+<form action = "/api/section/url/create" method= "post" enctype="multipart/form-data" id ="createUrl">
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder= "Title" name= "title">
+  </div>
+  <div class="mb-3">
+    <input type="email" class="form-control" placeholder= "Email" name= "email">
+  </div>
+
+ <div class="input-group mb-3">
+  <label class="input-group-text">Section</label>
+  <select class="form-select" name = "section">
+	<% sections.map((section, index) => { -%>
+    <option value="<%= section.id %>">
+			<%= section.name %>
+		</option>
+
+			<% }) %>
+  </select>
+</div>
+
+				<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupFile01">Upload</label>
+  <input type="file" class="form-control" name= "image" id="inputGroupFile01">
+				</div>
+				
+	
+	  <div class="mb-3">
+    <input type="text" class="form-control" placeholder= "Password" name= "password">
+  </div>
+	
+
+  <button type="submit" class="btn btn-primary" onClick="createUrl(event)">Submit</button>
+</form>
+	
