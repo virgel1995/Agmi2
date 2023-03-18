@@ -4,6 +4,13 @@
 <% sections.map((section, index) => { %>
         <li><a href="#<%= index %>">
 					<%= section.name %>  #<%= index %> <br><span>Description...</span></a></li>
-				<% })%>
+	<% section.urls.map((url, ind) =>{
+		%>
+
+	<li><a href="#<%= index %>">
+					<%= url.title %>  #<%= ind %> <br><span>Description...</span></a></li>
+		
+				<% 	}) })%>
+					
       </ul>
 					</form>
