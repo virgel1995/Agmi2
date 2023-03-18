@@ -1,6 +1,6 @@
 
 const Section = require('../database/Schemas/Sections.js');
-
+const Counter = require("../database/Schemas/Counter")
 /**  Sections routes */
 
  const createSection =  async (req, res) => {
@@ -24,16 +24,24 @@ const createUrl =  async (req, res) => {
 	const data = req.body;
 try {
 const section = await Section.findById(data.section);
-    
+
+
 		const url = {
 			title: data.title,
 			email: data.email,
 			password: data.password,
 			image: `/images/uploads/${req.file.originalname
 				}`														} ;
-section.counter++;
+	
+	const count = new Counter({
+		    name: data.title
+	});
+
+await count.save();
+
 section.urls.push(url)
 await section.save();
+
 	res.status(200).send(url)
 	} catch (error) {
 

@@ -1,28 +1,24 @@
- const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 const data = {
-  users: [
-    {
-      name: 'admin',
+	users: [
+		{
+			name: 'admin',
 			email: "admin@admin.com",
-      password: bcrypt.hashSync('admin'),
-      isAdmin: true,
-    },
-  ],
+			password: bcrypt.hashSync('admin'),
+			isAdmin: true,
+		},
+	],
 	sections: [
-    {
-      name: 'Main Section',
-		//	counter: 1,
-    },
-  ],
-		urls: [
-    {
-        title: 'Google',
-				image : "microsoft.jpg",
-				email : "email@hotmail.com",
-				password: "123456",
-			  section : 1
-    },
-  ],
+		{
+			name: 'Main Section',
+			//	counter: 1,
+		},
+	],
+	counters: [
+		{
+			name: "count",
+		},
+	],
 };
-module.exports =  data;
+module.exports = data;
