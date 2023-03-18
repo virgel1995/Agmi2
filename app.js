@@ -9,7 +9,7 @@ require("dotenv").config()
 const cors =  require("cors")
 
 const { upload , isAdmin} = require("./utils");
-
+ 
 
 var app = express();
 const oneDay = 1000 * 60 * 60 * 24;
@@ -51,6 +51,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // section routes 
+app.get("/section", section.getSections)
+app.get("/url", section.getUrls)
 app.post("/section/create", section.createSection) 
 app.post("/url/create", upload.single("image"), section.createUrl)
 //seeder route
@@ -58,10 +60,12 @@ app.use('/api/seed', seedRouter);
 
 //user routes
 app.get("/users", isAdmin, userController.allUsers)
+
 app.get("/user/:id", userController.getUser)
+
 app.post("/user/login", userController.login)
-app.post("/user/create", isAdmin,userController.createUser)
-app.get('/user/logout', userController.logout)
+app.post("/user/create",userController.createUser)
+app.post('/user/logout', userController.logout)
 
 
 // main routes
@@ -74,9 +78,18 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+
+	const saveSession = (value) =>{
+		req.session.user = value
+	}
 });
 // connection to database
 intiMongoose();
 //list routes to console
 listRoutes(app)
 module.exports = app;
+
+const getVlue =(value) =>{
+	return value
+}
+

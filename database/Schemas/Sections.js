@@ -29,6 +29,10 @@ const sectionSchema = new mongoose.Schema(
 			type: String,
 			default:  "New Section"
 					},
+		counter: {
+   type: Number,
+			default: 0
+		},
 		urls: [UrlSchema]
 	},
 	{

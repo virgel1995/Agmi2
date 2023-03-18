@@ -2,8 +2,6 @@
 const bcrypt = require('bcryptjs');
 
 const User = require('../database/Schemas/User.js');
-const { isAdmin } = require('../utils.js');
-
 
 const allUsers = async (req, res) => {
 		const users = await User.find({});
@@ -29,21 +27,19 @@ res.status(200).json({
 	
 const login = async (req, res) => {
 		const user = await User.findOne({ email: req.body.email });
+	//console.log(user)
 		if (user) {
 		req.session.user = user;
 			if (bcrypt.compareSync(req.body.password, user.password)) {
-req.session.regenerate(function(){
+//req.session.regenerate(function(){
 
 			res.status(200).json({
 				message: "Successfully Loged In",
-				id: user._id,
-				name: user.name,
-				email: user.email,
-				isAdmin: user.isAduser.isAdmin,
+				user: user
 			})
-	
-req.session.user = user
-      });
+		req.session.userData = user
+			//res.redirect("/");
+     // });
 			}
 		} else {
 res.status(404).json({
@@ -76,13 +72,12 @@ const createUser = async (req, res) => {
 }
 	
 
-	const logout = async function(req, res, next) {
-	req.session.destroy(function(err) {
+	const logout = async(req, res, next) => {
 		console.log('Destroyed session')
-	})
-	
-			res.redirect("/login");
-
+res.status(200).json({
+	message: "Successfully Loged out"
+})
+		
 	}
 
 module.exports = {

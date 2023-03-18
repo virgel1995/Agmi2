@@ -4,15 +4,16 @@ var router = express.Router();
 const User = require('../database/Schemas/User.js');
 const Section = require('../database/Schemas/Sections.js');
 
-const { isAdmin } = require('../utils.js');
-
 /* GET home page. */
 router.get('/', async function(req, res) {
 const section = await Section.find({})
-
+const urlCount = section.map((sec)=>{
+	return sec.counter
+})
+	//console.log(urlCount)
 		res.render('index', {
 			title: 'Main Page',
-			//user: user,
+			counter: urlCount,
 			session: req.session,
 			sections: section
 		})
@@ -28,10 +29,13 @@ router.get("/login", function(req, res, next) {
 
 router.get('/home', async function(req, res) {
 const section = await Section.find({})
-//const user = await User.find(req.session.user._id)
+const urlCount = section.map((sec)=>{
+	return sec.counter
+})
+	//console.log(urlCount)
 		res.render('index', {
 			title: 'Main Page',
-			//user: user,
+			counter: urlCount,
 			session: req.session,
 			sections: section
 		})

@@ -1,60 +1,54 @@
 
 
 
-const siteUrl ="https://Agmi.virgel1995.repl.co"
- 
 const storage = window.localStorage
-/** 
-*@GET 
-* USER DATA
-*/
-const getUsers = () => {
-  axios
-    .get(`/api/user`) 
-    .then((response) => {
-      const users = response.data;
-      console.log(`Users`, users);
-    })
-    .catch((error) => console.error(error));
-	
-}; 
-;
+let userdetails = [];
+const {
+  host, hostname, href, origin, pathname, port, protocol, search
+} = window.location
+console.log(pathname)
+$(document).ready(function() {
+
+	// loader 
+	setTimeout(function() {
+		$('body').addClass('loaded');
+	}, 3000);
+});
 
 
 /** 
 *@GET 
 * SECTION DATA
 */
-/*
-const getSections = () =>{
 
+const getSections = () =>{
 	  axios
-    .get(`/api/section`) 
+    .get(`/section`) 
     .then((response) => {
       const sec = response.data;
-      storage.setItem("sections", sec);
+     			//console.log(sec)
+			return sec;
     })
     .catch((error) => console.error(error));
 }
-getSections();
-*/
+
 /** 
 *@GET 
 * SECTION_URL DATA
 */
-/*
+
 const getUrls = () =>{
 	  axios
-    .get(`/api/section/url`) 
+    .get(`/url`) 
     .then((response) => {
+			console.log(response.data)
       const urls = response.data;
-    storage.setItem("urls", urls);
+   // storage.setItem("urls", urls);
+			return urls;
     })
     .catch((error) => console.error(error));
 }
-
-*/
-
+getUrls()
 /** 
 * @GET
 * USER FIND
@@ -62,7 +56,7 @@ const getUrls = () =>{
 /*
 const findUser = (id) => {
   axios
-    .get(`/api/user/${id}`)
+    .get(`/user/${id}`)
     .then((res) => {
       console.log(`found`, res.data);
 
@@ -79,16 +73,16 @@ const findUser = (id) => {
 * CREATE NEW USER
 * /api/user/create
 */
-/*
-const createUser = (event) => {
-event.preventDefault();
+
+const createUser = () => {
+//event.preventDefault();
 
   const form = document.querySelector("#createUser");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     axios
-      .post("/api/user/create", formData, {
+      .post("/user/create", formData, {
         headers: {
 "Content-Type":"application/json"
         },
@@ -103,7 +97,7 @@ window.location.replace('/home');
       });
   });
 }
-*/
+
 
 /** 
 *@POST 
@@ -126,8 +120,7 @@ text.style.display = "block"
         },
       })
       .then((res) => {
-		toaster("Section Created", "Successfully Created New Section")
-				//console.log(res.data)
+				console.log(res.data)
 window.location.replace('/home');
       })
       .catch((err) => {
@@ -160,8 +153,7 @@ text.style.display = "block"
       })
       .then((res) => {
 				//console.log(res.data)
-toaster("Url Created", "Successfully Created New Url")
-				window.location.replace('/home');
+window.location.replace('/home');
 
       })
       .catch((err) => {
@@ -178,8 +170,8 @@ toaster("Url Created", "Successfully Created New Url")
 * /api/user/login
 */
 
-const login = (event) => {
-event.preventDefault();
+const login = () => {
+//event.preventDefault();
 
    const form = document.getElementById("loginForm");
   form.addEventListener("submit", (e) => {
@@ -190,10 +182,9 @@ axios.post("/user/login", formData, {
 "Content-Type":"application/json"
         },
       }).then((res) => {
-				//console.log(res.data)
-toaster("Login", "Successfully Loged In")
+				console.log(res.data)
 		 
-storage.setItem("user", res.data);
+storage.setItem("userData", JSON.stringify(res.data));
 				window.location.replace('/home');
 
       })
@@ -201,4 +192,84 @@ storage.setItem("user", res.data);
         console.log(err);
       });
 })
+}
+
+/** 
+*@POST 
+* Login
+* /api/user/login
+*/
+
+const logout = () => {
+//event.preventDefault();
+
+   const form = document.getElementById("logoutForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+axios.post("/user/logout").then(() => {
+
+storage.clear()
+				window.location.replace('/');
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+})
+}
+/** 
+*@GET 
+* USER DATA
+*/
+const getUser= () =>{
+	const user = JSON.parse(storage.getItem("userData"))
+	if(user){
+	  axios
+    .get(`/user/${user.user._id}`) 
+    .then((response) => {
+      const userData = response.data;
+  userdetails.push(userData.user);
+    })
+    .catch((error) => console.error(error));
+	}else{
+		console.log("No User Found")
+	}
+}
+getUser()
+
+console.log(userdetails)
+
+
+const toaster= (title, desc) => {
+	const toasterPlaceholder = document.getElementById("toasterPlaceholder");
+	toasterPlaceholder.innerHTML = `
+	<div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
+  <div class="toast-container p-3" id="toastPlacement">
+    <div class="toast">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">${title}</strong>
+      </div>
+      <div class="toast-body">
+       ${desc}
+      </div>
+    </div>
+  </div>
+</div>
+`
+		 }
+
+
+
+
+var login_btn = document.querySelector(".login-btn")
+var logout_btn = document.querySelector(".logout-btn")
+var adminUi = document.getElementById("admin-ui")
+var userUi = document.getElementById("user-ui")
+// data works while login or logout
+if (storage.getItem("userData")) {
+	
+login_btn.style.display = "none"
+}else {
+	logout_btn.style.display = "none"
 }

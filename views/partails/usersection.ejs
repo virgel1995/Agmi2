@@ -1,17 +1,21 @@
 
 
-<% sections.map(async(sec, index) =>{ %>
+<% sections.map(async(sec) =>{ %>
 
  <div class="container-fluid section">
+	 	<!-- background images -->
+	
+	<img src ="/images/triangle_blue.png" class="triangle"/>
+			<img src="/images/points_bg.png" class="points" />
 	 <!-- start row for grid -->
 <div class="row">
 	<div class= "text-center">
-		 <h1 class= "section-name" id="<%= index %>"> <%= sec.name %> : <%= sec.urls.length %>
+		 <h1 class= "section-name"> <%= sec.name %> : <%= sec.urls.length %>
 		 </h1>
 	</div>
 
 
-   <% sec.urls.map((url) =>{ %>
+   <% sec.urls.map(url =>{ %>
 		 <!-- start col -->
 		
      <div class="col-md-6">

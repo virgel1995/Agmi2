@@ -1,17 +1,17 @@
 
-<form  method= "post" enctype="multipart/form-data" id ="createUrl" class ="c-form">
+<form  method= "post" enctype="multipart/form-data" id ="createUrl" class ="c-form my-2">
   <div class="">
-    <input type="text" class="form-control bg-dark text-light" placeholder= "Title" name= "title">
+    <input type="text" class="form-control" placeholder= "Title" name= "title">
   </div>
   <div class="">
-    <input type="email" class="form-control bg-dark text-light" placeholder= "Email" name= "email">
+    <input type="email" class="form-control " placeholder= "Email" name= "email">
   </div>
 
- <div class="input-group  bg-dark text-light">
-  <label class="input-group-text  bg-dark text-light">Section</label>
-  <select class="form-select bg-dark text-light" name = "section">
+ <div class="input-group">
+  <label class="form-control">Section</label>
+  <select class="form-select" name = "section">
 	<% sections.map((section, index) => { -%>
-    <option class=" bg-dark text-light" value="<%= section.id %>">
+    <option class="" value="<%= section.id %>">
 			<%= section.name %>
 		</option>
 
@@ -19,17 +19,17 @@
   </select>
 </div>
 
-				<div class="input-group bg-dark text-light">
-  <label class="input-group-text bg-dark text-light" for="inputGroupFile01">Upload</label>
-  <input type="file" class="form-control bg-dark text-light" name= "image" id="inputGroupFile01">
+				<div class="input-group">
+ 
+  <input type="file" class="form-control " name= "image" id="inputGroupFile01">
 				</div>
 				
 	<div class="spin-hide" id="uploader" >
 		<%- include("spin.ejs") %>
 	</div>
 		<div class="input-group">
-	<input type="text" class="form-control bg-dark text-light" placeholder= "Password" name= "password">
-<button type="submit" class="btn btn-outline-dark" id="createingUrl" onClick="createUrl()">Create Url</button>
+	<input type="text" class="form-control " placeholder= "Password" name= "password">
+<button type="submit" class="btn btn-outline-dark" id="createingUrl" onClick="createUrl()">Create</button>
 				</div>
   
 </form>

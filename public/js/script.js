@@ -1,28 +1,30 @@
 
-$(document).ready(function() {
+// Dropdown Menu
+var dropdown = document.querySelectorAll('.dropdown');
+var dropdownArray = Array.prototype.slice.call(dropdown,0);
+dropdownArray.forEach(function(el){
+	var button = el.querySelector('a[data-toggle="dropdown"]'),
+			menu = el.querySelector('.dropdown-menu'),
+			arrow = button.querySelector('i.icon-arrow');
 
+	button.onclick = function(event) {
+		if(!menu.hasClass('show')) {
+			menu.classList.add('show');
+			menu.classList.remove('hide');
+			arrow.classList.add('open');
+			arrow.classList.remove('close');
+			event.preventDefault();
+		}
+		else {
+			menu.classList.remove('show');
+			menu.classList.add('hide');
+			arrow.classList.remove('open');
+			arrow.classList.add('close');
+			event.preventDefault();
+		}
+	};
+})
 
-	// loader 
-	setTimeout(function() {
-		$('body').addClass('loaded');
-	}, 3000);
-});
-
-const toaster= (title, dec) => {
-	const toasterPlaceholder = document.getElementById("toasterPlaceholder");
-	toasterPlaceholder.innerHTML = `
-	<div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative bd-example-toasts rounded-3">
-  <div class="toast-container p-3" id="toastPlacement">
-    <div class="toast">
-      <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
-        <strong class="me-auto">${title}</strong>
-      </div>
-      <div class="toast-body">
-       ${desc}
-      </div>
-    </div>
-  </div>
-</div>
-`
-}
+Element.prototype.hasClass = function(className) {
+    return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
+};

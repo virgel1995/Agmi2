@@ -12,11 +12,7 @@ const data = {
 	sections: [
     {
       name: 'Main Section',
-      url : {
-				image : "microsoft.jpg",
-				email : "email@hotmail.com",
-				password: "123456"
-			}
+		//	counter: 1,
     },
   ],
 		urls: [

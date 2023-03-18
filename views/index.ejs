@@ -1,36 +1,73 @@
-<%- include("partails/head.ejs") %>
+<%- include("partails/head.ejs", {
+	counter: counter,
+	sections: sections
+}) %>
+<!-- admin ui start -->
 
-	
-<div class="container-fluid">
+	<div id="admin-ui" >
+<div class="container">
 	<div class= "row">
 				<!-- start col 4 -->
-<div class="col-md-4">
-
-
+<div class="w-50 crete-links">
 	
-	<div class="creat-url" >
-	<!--		
-<%- include("partails/createurl.ejs", {
-	sections: sections
-}) %>-->
-	</div>
+<div class="links" >
+	<div class="links-btns">
+		
 
-	<div class="creat-sec" >
-	<!--
+  <ul class="drop d-sm-inline-flex">
+		<!-- Create section drop down -->
+    <li class="dropdown mt-2 mx-1">
+      <a href="#" data-toggle="dropdown"> Create New Section <i class="icon-arrow"></i></a>
+      <ul class="dropdown-menu">
+
+					<div id="create-sec" class="creat-sec" >
+	
 <%- include("partails/createsec.ejs") %>
-	-->
+	
 		</div>
 
-	<div class="creat-user" >
-		<!--
+				
+      </ul>
+    </li>  
+		<!-- Create user drop down -->
+		<li class="dropdown mt-2 mx-1">
+      <a href="#" data-toggle="dropdown">Create New User <i class="icon-arrow"></i></a>
+      <ul class="dropdown-menu">
+
+
+	<div id="create-user" class="creat-user" >
+		
 <%- include("partails/createuser.ejs") %>
--->
+
+	</div>
+
+      </ul>
+		</li>
+
+			<!-- Create url drop down -->
+
+		<li class="dropdown mt-2 mx-1">
+      <a href="#" data-toggle="dropdown"> Create New Record <i class="icon-arrow"></i></a>
+      <ul class="dropdown-menu">
+     	<div id="create-url" class="creat-url" >
+			
+<%- include("partails/createurl.ejs", {
+	sections: sections
+}) %>
+	</div>
+
+      </ul>
+		</li>
+
+		
+  </ul>
 	</div>
 
 
 </div>
+</div>
 		<!-- end col 4  and start col 8-->
-	<div class="col-md-8" >
+	<div class="col-md-12" >
 <%- include("partails/section.ejs", {
 	sections: sections
 }) %>
@@ -42,7 +79,9 @@
 
 
 </div>
-	
+	</div>
+
+	<!-- end  ui -->
 
 <%- include("partails/footer.ejs") %>
 

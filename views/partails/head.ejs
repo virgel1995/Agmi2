@@ -3,7 +3,10 @@
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        	<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui, viewport-fit=cover"
+		/>
 			
 <meta property="og:title" content="Home 05"/>
         <meta property="og:type" content="article"/>
@@ -18,15 +21,57 @@
         <title> Agmi - Profishnal- Freelancer </title>
     </head>
     <body>
-<div id="toasterPlaceholder"></div>
-
+			<!--<div id="toasterPlaceholder"></div>-->
 <!--
  <div id="loader-wrapper">
-        <div id="loader"></div>
+        <div id="loader">
+		<img src ="/images/logo.png" width= "50px" height= "50px" />
+		</div>
 
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
 
       </div>
 			-->
+	 	<!-- background images -->
+	
+	<img src ="/images/triangle_blue.png" class="triangle"/>
+			<img src="/images/points_bg.png" class="points" />
+			
 <div class="content" >
+	<div class= "container" >
+	<div class= "row">
+		<div class= "col-md-6 my-1" >
+		
+	<!-- search bar start -->
+	<div class= "search-bar">
+		<%- include("search.ejs", {
+	counter: counter,
+	sections: sections
+}) %>
+		
+	</div>
+	<!-- search bar end and auth links start  -->
+			
+			
+		</div>
+		
+				<div class= "col-md-6 d-flex space-between my-1" >
+			<div class= "btn btn-info mx-1" >
+				Records Count : <%= counter %>
+			</div>
+<div class="auth-links d-flex mx-1">
+
+	<a href="/login" class="btn btn-outline-info login-btn" > Login</a>
+	
+	<form method= "post" id= "logoutForm" class= "logout-btn">	
+		<button type="submit" class="btn btn-outline-info " onClick="logout()">Logout</button>
+	</form>
+
+	
+</div>
+	<!--  auth links end  -->
+</div>
+		
+	</div>
+	</div>

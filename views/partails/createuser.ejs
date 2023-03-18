@@ -1,15 +1,15 @@
 
-<form action = "/api/user/create" method= "post" id= "createUser" class ="c-form">
+<form method= "post" id= "createUser" class ="c-form my-2">
 	
 		<div class="input-group">
-    <input type="text" class="form-control bg-dark text-light" placeholder= "User Name" name= "name">
-<input type="password" class="form-control bg-dark text-light" placeholder= "Password" name= "password">
+    <input type="text" class="form-control " placeholder= "User Name" name= "name">
+<input type="password" class="form-control " placeholder= "Password" name= "password">
 	</div>
 
 		<div class="input-group">
-    <input type="email" class="form-control bg-dark text-light" placeholder= "Email Address" name= "email">
+    <input type="email" class="form-control" placeholder= "Email Address" name= "email">
 	
-  <button type="submit" class="btn btn-outline-dark" onClick="createUser(this.event)">Create User</button>
+  <button type="submit" class="btn btn-outline-dark" onClick="createUser()">Create</button>
 </div>
 </form>
 	
