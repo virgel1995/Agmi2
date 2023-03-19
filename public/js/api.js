@@ -23,6 +23,36 @@ $(document).ready(function() {
 //-------- Createing --------//
 /** 
 *@POST 
+* Login
+* /user/login
+*/
+
+const login = () => {
+//event.preventDefault();
+
+   const form = document.getElementById("loginForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+axios.post("/user/login", formData, {
+        headers: {
+"Content-Type":"application/json"
+        },
+      }).then((res) => {
+				console.log(res.data)
+		 
+storage.setItem("userData", JSON.stringify(res.data));
+				window.location.replace('/home');
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+})
+}
+
+/** 
+*@POST 
 * CREATE NEW USER
 * /user/create
 */
@@ -117,35 +147,6 @@ window.location.replace('/home');
 }
 
 
-/** 
-*@POST 
-* Login
-* /user/login
-*/
-
-const login = () => {
-//event.preventDefault();
-
-   const form = document.getElementById("loginForm");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-axios.post("/user/login", formData, {
-        headers: {
-"Content-Type":"application/json"
-        },
-      }).then((res) => {
-				console.log(res.data)
-		 
-storage.setItem("userData", JSON.stringify(res.data));
-				window.location.replace('/home');
-
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-})
-}
 
 /** 
 *@POST 
@@ -170,6 +171,126 @@ storage.clear()
       });
 })
 }
+
+
+/** 
+* @Delete
+* User Delete
+* /user/delete/:
+*/
+
+const deleteUser = (id)=>{
+
+axios.delete(`/user/delete/${id}`,  {
+        headers: {
+"Content-Type":"application/json"
+				}
+      })
+      .then((res) => {
+				console.log(res.data)
+window.location.replace('/home');
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+}
+
+/** 
+*@PUT
+*USER.UPDATE
+* /user/update/:id/:name/:email/: password 
+*/
+
+const updateUser = () =>{
+
+   const email = document.querySelector("#EmailAdrees").value;
+ const name = document.querySelector("#userName").value;
+const pass = document.querySelector("#passWord").value;
+id=  JSON.parse(storage.getItem("userData")).user._id
+    axios.post(`/user/update/${id}/${name}/${email}/${pass}`, {
+        headers: {
+"Content-Type":"application/json" },
+      }).then((res) => {
+storage.clear()
+console.log(res.data)
+storage.setItem("userData", JSON.stringify(res.data));	 window.location.replace('/home');
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+		
+
+}
+
+/** 
+*@POST 
+* delete url
+* /url/delete
+*/
+const deleteUrl = () => {
+const section = document.getElementById("DeleteUrlSection").value;
+	const url = document.getElementById("DeleteUrlTitle").value;
+	const image = document.getElementById("DeleteUrlImage").value;
+    axios.delete(`/url/delete/${section}`,  {
+        headers: {
+"Content-Type":"application/json"
+        },
+				data:{
+				title: url,
+				image: image
+			}
+      })
+      .then((res) => {
+				console.log(res.data)
+window.location.replace('/home');
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  
+}
+
+
+
+/** 
+*@PUT
+* UPDATE SECTION URL
+* /url/update
+*/
+const updateUrl = () => {
+//event.preventDefault();
+
+   const form = document.querySelector("#updateUrl");
+		const text = document.getElementById("uploader")
+text.style.display = "block"
+	
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    axios
+      .put("/url/update", formData, {
+        headers: {
+"Content-Type":"application/json",
+//"Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+				//console.log(res.data)
+window.location.replace('/home');
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+	
+}
+
 /** 
 *@GET 
 * USER DATA
@@ -200,18 +321,22 @@ login_btn.style.display = "none"
 	logout_btn.style.display = "none"
 }
 //
-let user ;
-	if (storage.getItem("userData")) {
-		user = JSON.parse(storage.getItem("userData")).user
-		
-
+	if (JSON.parse(storage.getItem("userData")).user) {
+	const	user = JSON.parse(storage.getItem("userData")).user
 
 var createUserIsAdmin = document.getElementById("isAdmin")
 var settingsBtns = document.getElementById("settings")
-if(user) {
+//const EditUrlBtns = document.getElementById("EditUrl")
+const EditUrlBtns = document.querySelector(".editUrl")
+const username = document.getElementById("username")
+		username.innerHTML = user.name
 settingsBtns.classList.remove("d-none")
-}
-if(user.isAdmin){
+			//if (EditUrlBtns) {
+
+EditUrlBtns.classList.remove("d-none")
+			//} //.toggle
+	
+if(JSON.parse(storage.getItem("userData")).user.isAdmin){
 	createUserIsAdmin.classList.remove("d-none")
 }
 

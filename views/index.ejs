@@ -4,74 +4,17 @@
 }) %>
 <!-- admin ui start -->
 
-	<div id="admin-ui" >
-<div class="container">
+<div class="container-fluid">
 	<div class= "row">
-				<!-- start col 4 -->
-<div class="w-md-50 d-none crete-links" id= "settings">
+<div class= "col-md-4 mt-md-5" >
+	<%- include("partails/sidebar.ejs", {
+	sections: sections,
+		counter: counter 
 	
-<div class="links" >
-	<div class="links-btns">
-		
-
-  <ul class="drop d-sm-inline-flex">
-		<!-- Create section drop down -->
-		
-    <li class="dropdown mt-2 mx-1">
-      <button type= "button" data-toggle="dropdown"> Create New Section </button>
-      <ul class="dropdown-menu p-2">
-
-					<div id="create-sec" class="creat-sec" >
-	
-<%- include("partails/createsec.ejs") %>
-	
-		</div>
-
-				
-      </ul>
-    </li>  
-		<!-- Create user drop down -->
-		<li id="isAdmin" class="dropdown d-none mt-2 mx-1">
-      <button type= "button" data-toggle="dropdown">Create New User </button>
-      <ul class="dropdown-menu p-2">
-
-
-	<div id="create-user" class="creat-user" >
-		
-<%- include("partails/createuser.ejs") %>
-
-	</div>
-
-      </ul>
-		</li>
-
-			<!-- Create url drop down -->
-
-		<li class="dropdown mt-2 mx-1">
-      <button type= "button" data-toggle="dropdown" class= "d-flex"> 
-				Create New Record 
-			</button>
-      <ul class="dropdown-menu p-2">
-     	<div id="create-url" class="creat-url" >
-			
-<%- include("partails/createurl.ejs", {
-	sections: sections
 }) %>
-	</div>
-
-      </ul>
-		</li>
-
-		
-  </ul>
-		
-	</div>
-
-
+	
 </div>
-</div>
-		<!-- end col 4  and start col 8-->
-	<div class="col-md-12" >
+	<div class="col-md-8 mt-md-5" >
 <%- include("partails/section.ejs", {
 	sections: sections
 }) %>
@@ -83,7 +26,6 @@
 
 
 </div>
-	</div>
 
 	<!-- end  ui -->
 

@@ -8,14 +8,14 @@ const Counter = require('../database/Schemas/Counter.js');
 router.get('/', async function(req, res) {
 const section = await Section.find({})
 	const urlCount = await Counter.find({}).count()
-console.log(__dirname)
 
-	//console.log(urlCount)
+const user = await User.find({})
 		res.render('index', {
 			title: 'Main Page',
 			counter: urlCount,
+			user: user,
 			session: req.session,
-			sections: section,
+			sections: section
 		})
 	
 	res.end();
@@ -23,6 +23,8 @@ console.log(__dirname)
 
 
 router.get("/login", function(req, res, next) {
+	
+	console.log(req.cookies)
 	res.render('login', { title: 'Login Page', session: req.session });
 	res.end();
 })
@@ -31,31 +33,17 @@ router.get('/home', async function(req, res) {
 const section = await Section.find({})
 	const urlCount = await Counter.find({}).count();
 
-
-	console.log(__dirname)
+const user = await User.find({})
+console.log(user)
 		res.render('index', {
 			title: 'Main Page',
 			counter: urlCount,
+			user: user,
 			session: req.session,
 			sections: section
 		})
 	
 	res.end();
 });
-
-router.get(
-  '/search', async (req, res) => {
-    const { query } = req;
-		
-
-    const search = query.query || '';
-
-
-    const section = await Section.find()
-
-    res.send({
-      section,
-    });
-	});
 
 module.exports = router;

@@ -14,10 +14,10 @@ padding:0;
 :root{
 	--purple: rgb(151,120,209);
 	--site-name: #6254e7;
-	--grey: grey;
+	--grey: gainsboro;
 	--grey200: #ebd8d8;
 	--sky: #00B7FF;
---drop: #a53ea8;
+--drop: #00B7FF;
 	--dropg: #ba6fbd;
 
 }
@@ -32,8 +32,11 @@ html {
 }
 body {
   font: 14px "Lucida Grande", Theme;
-	background: whitesmoke; 
+	background: var(--grey); 
 	transition: right .3s ease;
+}
+.container, .container-fluid {
+	height: 100vh;
 }
 ul, li {
 	list-style: none;
@@ -42,7 +45,7 @@ ul, li {
 	width: 72px;
   height: 74px;
 	position: absolute;
-	left: 90%;
+	left: 1;
 	top: 50vh;
 	animation: animate-triangle 6s ease infinite;
 }
@@ -80,19 +83,16 @@ ul, li {
 a {
 	text-decoration: none ;
 }
-
-.section{
-	margin-top: 10rem;
+/*
+.section ,.sidebar{
+	margin-top: 12rem;
 	z-index: 222222;
-}
+}*/
 .crete-links{
-	position: absolute; 
-	top: 50px;
+
 }
 .links{
-	position: relative; 
-	top: 3rem !important;
-	width: 80%;
+
 }
 .section-name{
 	color: rgb(151,120,209);
@@ -324,7 +324,11 @@ a {
 /* ------ drop down menu ----*/
 
 
-
+.editUrl{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
 
 .drop {
   list-style: none;
@@ -358,15 +362,15 @@ button{
   padding: 10px;
 }
 .dropdown [data-toggle="dropdown"]:hover {
-  background: var(--drop);
+ /* background: var(--drop);*/
 }
 .dropdown .icon-arrow {
-/*  position: absolute;*/
+  position: absolute;
   display: block;
   font-size: 0.7em;
   color: #fff;
- /* top: 14px;
-  right: 10px;*/
+  top: 14px;
+  right: 10px;
 }
 .dropdown .icon-arrow.open {
   -moz-transform: rotate(-180deg);
@@ -424,6 +428,7 @@ button{
 .dropdown .show {
   display: block;
   max-height: 9999px;
+	max-width:9999px;
   -moz-transform: scaleY(1);
   -ms-transform: scaleY(1);
   -webkit-transform: scaleY(1);

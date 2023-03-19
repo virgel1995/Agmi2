@@ -55,6 +55,8 @@ app.get("/section", section.getSections)
 app.get("/url", section.getUrls)
 app.post("/section/create", section.createSection) 
 app.post("/url/create", upload.single("image"), section.createUrl)
+app.delete("/url/delete/:id", section.deleteUrl)
+app.put("/url/update", section.updateUrl)
 //seeder route
 app.use('/api/seed', seedRouter);
 
@@ -65,13 +67,17 @@ app.get("/user/:id", userController.getUser)
 
 app.post("/user/login", userController.login)
 app.post("/user/create",userController.createUser)
+app.post("/user/update/:id/:name/:email/: password", userController.updateUser)
+app.delete("/user/delete/:id", userController.deleteUser)
 app.post('/user/logout', userController.logout)
 
 
 // main routes
 app.use("/", mainRouter);
+
 //handling errors
 app.use(function(err, req, res, next) {
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {
 	};

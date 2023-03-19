@@ -1,0 +1,8 @@
+				<form method= "delete" >	
+<input type="text" hidden value= "<%= sec._id %>" id= "DeleteUrlSection" />
+	<input type="text" hidden value= "<%= url.title %>" id= "DeleteUrlTitle" />
+	<input id= "DeleteUrlImage" type= "text" hidden value= "<%= url.image %>" />
+					<button type= "submit" onClick= "deleteUrl()" class="btn btn btn-danger">
+					Delete
+				</button>
+					</form>

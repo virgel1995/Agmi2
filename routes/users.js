@@ -32,14 +32,16 @@ const login = async (req, res) => {
 		req.session.user = user;
 			if (bcrypt.compareSync(req.body.password, user.password)) {
 //req.session.regenerate(function(){
+	//	req.session.userData = user
+			//res.redirect("/");
+     // });
 
+				
 			res.status(200).json({
 				message: "Successfully Loged In",
 				user: user
 			})
-		req.session.userData = user
-			//res.redirect("/");
-     // });
+				
 			}
 		} else {
 res.status(404).json({
@@ -70,7 +72,45 @@ const createUser = async (req, res) => {
 		}
 
 }
-	
+	const updateUser = async (req, res) =>{
+		const data = req.params;
+		
+ try {
+ 	  const user = await User.findOneAndUpdate({
+		 _id: data.id
+	 }, {
+			name: data.name,
+			email: data.email,
+			password: bcrypt.hashSync(String(req.body.password))
+	 });
+
+			res.status(200).json({
+				message: "success update",
+				user : user
+			})
+console.log(user)
+		
+ } catch (err) {
+ 	console.log(err)
+res.status(400).send(err)
+ }
+	}
+
+const deleteUser = async (req,res) =>{
+	const userId = req.params.id
+try {
+ await User.findOneAndDelete({
+		 _id: userId
+	 });
+console.log("deleted user")
+
+res.status(200).send("user deleted successful")
+} catch (error) {
+	console.log(error)
+res.status(400).send(err)
+}
+
+}
 
 	const logout = async(req, res, next) => {
 		console.log('Destroyed session')
@@ -85,5 +125,7 @@ module.exports = {
 	getUser,
 	login,
 	createUser,
+  updateUser,
+  deleteUser,
 	logout
 }

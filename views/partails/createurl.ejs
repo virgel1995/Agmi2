@@ -1,14 +1,13 @@
 
 <form  method= "post" enctype="multipart/form-data" id ="createUrl" class ="c-form my-2">
-  <div class="">
+  <div class="mb-3">
     <input type="text" class="form-control" placeholder= "Title" name= "title">
   </div>
-  <div class="">
+  <div class="mb-3">
     <input type="email" class="form-control " placeholder= "Email" name= "email">
   </div>
 
- <div class="input-group">
-  <label class="form-control">Section</label>
+ <div class="mb-3">
   <select class="form-select" name = "section">
 	<% sections.map((section, index) => { -%>
     <option class="" value="<%= section.id %>">
@@ -18,19 +17,24 @@
 			<% }) %>
   </select>
 </div>
-
-				<div class="input-group">
- 
-  <input type="file" class="form-control " name= "image" id="inputGroupFile01">
+				
+		<div class="mb-3">
+	<input type="text" class="form-control " placeholder= "Password" name= "password">
 				</div>
 				
+	<div class="mb-3">
+  <input type="file" class="form-control " name= "image" id="inputGroupFile01">
+	</div>
+
+	<div class= "d-flex">
+
+
+<button type="submit" class="btn btn-info btn-block" id="createingUrl" onClick="createUrl()">Create</button>
 	<div class="spin-hide" id="uploader" >
 		<%- include("spin.ejs") %>
 	</div>
-		<div class="input-group">
-	<input type="text" class="form-control " placeholder= "Password" name= "password">
-<button type="submit" class="btn btn-outline-dark" id="createingUrl" onClick="createUrl()">Create</button>
-				</div>
-  
+
+
+	</div>
 </form>
 	

@@ -2,19 +2,22 @@
 
 <% sections.map(async(sec, index) =>{ %>
 
- <div class="container-fluid section">
+ <div class="section">
 	 <!-- start row for grid -->
-<div class="row">
-	<div class= "text-center">
-		 <h1 class= "section-name" id="<%= sec._id %>"> <%= sec.name %> : <%= sec.urls.length %>
+  <div class="row">
+	   <div class= "text-center">
+		   <h1 class= "section-name" id="<%= sec._id %>"> <%= sec.name %> : <%= sec.urls.length %>
+			 
 		 </h1>
+
+
 	</div>
 
 
    <% sec.urls.map((url) =>{ %>
 		 <!-- start col -->
 		
-     <div class="col-md-6 url">
+  <div class="col-md-6 url">
 
 	<!-- card  start -->
 <div class="card sec-card text-bg-dark mb-3" style="max-width: 18rem;" id= "<%= url._id %>">
@@ -26,25 +29,12 @@
     <h5 class="">
 			<%= url.title.slice(0, 16); %>
 		</h5>
-	<ul class="drop d-flex">
-    <li class="dropdown ">
- <button type= "button" data-toggle="dropdown"><img width= "15" src= "/images/design/settings.png"/></button>
-      <ul class="dropdown-menu p-3">
-edit card <%= url._id %>
-      </ul>
-    </li> 
-
-
-		    <li class="dropdown">
-      <button type= "button" data-toggle="dropdown"><img width= "15" src= "/images/design/delete.png"/></button>
-      <ul class="dropdown-menu p-4">
-<p class= "d-block" >  Are You Sure To Delet It? </p>
-				<button onClick= "deleteUrl(<%= url._id %>)" class="btn btn btn-danger">
-					Delete
-				</button>
-      </ul>
-    </li> 
-						</ul>
+	<div class=" d-none editUrl" id= "EditUrl">
+<%- include("deleteUrl.ejs" , {
+	sec: sec,
+	url: url
+}) %>
+	</div>
 	</div>
 		<img class= "sec-img mt-2" src= "<%= url.image %>" >
 		<hr style= "width: 50px; margin-left: 5px;" />
@@ -85,6 +75,6 @@ edit card <%= url._id %>
 
 		<% }) %>
 			 
-				</div>
-				</div>
+	</div>
+</div>
 		<% }) %>

@@ -1,0 +1,114 @@
+
+
+
+	<div class= "sidebar text-left justify-content-left">
+		<!-- records count-->
+			<div class= "d-flex" >
+		
+<div class= "btn btn-info mx-1" >
+				Records Count : <%= counter %>
+			</div>
+		<!-- search bar end and auth links start  -->
+	<a href="/login" class="btn btn-outline-info login-btn" > Login</a>
+	
+	<form method= "post" id= "logoutForm" class= "logout-btn">	
+		<button type="submit" class="btn btn-outline-info " onClick="logout()">Logout</button>
+	</form>
+
+
+		</div>
+
+				<!-- search and auth -->
+<div class= "d-block my-3" >
+<div class="auth-links mx-1">
+	
+	<!-- search bar start -->
+	<div class= "search-bar ">
+		  <input id="searchbar" onkeyup="searchBar()" type="text"
+        name="s" placeholder="Search .."  class= "btn btn-outline-info">
+      
+	</div>
+	
+</div>
+	<!--  auth links end  -->
+</div>
+
+
+
+				<!-- create drops -->
+<div class="d-none text-left justify-content-left crete-links" id= "settings">
+	
+<div class="links" >
+	<div class="links-btns">
+		
+
+  <ul class="drop d-md-block d-sm-flex ">
+		<!-- Create section drop down -->
+    <li class="dropdown mt-2 mx-1 btn btn-block">
+      <button type= "button" data-toggle="dropdown" > Create New Section </button>
+      <ul class="dropdown-menu p-2">
+
+					<div id="create-sec" class="creat-sec" >
+	
+<%- include("createsec.ejs") %>
+	
+		</div>
+
+				
+      </ul>
+    </li>  
+	<!-- Create url drop down -->
+		<li class="dropdown mt-2 btn btn-block">
+      <button type= "button" data-toggle="dropdown" class= "d-flex"> 
+				Create New Record 
+			</button>
+      <ul class="dropdown-menu p-2">
+     	<div id="create-url" class="creat-url" >
+			
+<%- include("createurl.ejs", {
+	sections: sections
+}) %>
+	</div>
+
+      </ul>
+		</li>
+		
+		<!-- Create user drop down -->
+		<li id="isAdmin" class="dropdown d-none mt-2 btn btn-block isAdmin">
+      <button type= "button" data-toggle="dropdown">Create New User </button>
+      <ul class="dropdown-menu p-2">
+
+
+	<div id="create-user" class="creat-user" >
+		
+<%- include("createuser.ejs") %>
+
+	</div>
+
+      </ul>
+		</li>
+		
+		<!-- Update user drop down -->
+		<!--
+		<li class="dropdown mt-2 btn btn-block">
+      <button type= "button" data-toggle="dropdown">Update User  Settings </button>
+      <ul class="dropdown-menu p-2">
+				
+<%- include("updateuser.ejs", {
+	sections: sections
+}) %>
+
+
+      </ul>
+		</li>
+		-->
+
+  </ul>
+		
+	</div>
+
+
+</div>
+</div>
+	
+	</div>
