@@ -1,0 +1,36 @@
+
+<form  method= "post" enctype="multipart/form-data" id ="createUrl" class ="c-form my-2">
+  <div class="">
+    <input type="text" class="form-control" placeholder= "Title" name= "title">
+  </div>
+  <div class="">
+    <input type="email" class="form-control " placeholder= "Email" name= "email">
+  </div>
+
+ <div class="input-group">
+  <label class="form-control">Section</label>
+  <select class="form-select" name = "section">
+	<% sections.map((section, index) => { -%>
+    <option class="" value="<%= section.id %>">
+			<%= section.name %>
+		</option>
+
+			<% }) %>
+  </select>
+</div>
+
+				<div class="input-group">
+ 
+  <input type="file" class="form-control " name= "image" id="inputGroupFile01">
+				</div>
+				
+	<div class="spin-hide" id="uploader" >
+		<%- include("spin.ejs") %>
+	</div>
+		<div class="input-group">
+	<input type="text" class="form-control " placeholder= "Password" name= "password">
+<button type="submit" class="btn btn-outline-dark" id="createingUrl" onClick="createUrl()">Create</button>
+				</div>
+  
+</form>
+	

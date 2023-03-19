@@ -2,7 +2,7 @@
 const Section = require('../database/Schemas/Sections.js');
 const Counter = require("../database/Schemas/Counter")
 /**  Sections routes */
-
+console.log(__dirname)
  const createSection =  async (req, res) => {
 
 	try {
@@ -67,9 +67,32 @@ const getSections =  async (req, res) => {
 	res.status(200).send(section)
 }
 
+const updateUrl = async (req, res) =>{
+try {
+	const section =  await Section.findById(req.params.id);
+if (section){
+section.name = req.body.name
+await section.save();
+res.status(200).json({
+	message: "Successfully Update Section",
+				_id: section._id,
+				name: section.name
+			});
+} else {
+	res.status(404).json({
+		message: "Sorry But section with this Id Not Found"
+	});
+}
+	res.end()
+} catch (error) {
+	console.log(error);
+}
+}
+
 module.exports = {
 	createSection,
 	createUrl,
 	getUrls,
-	getSections
+	getSections,
+	updateUrl
 }

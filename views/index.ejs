@@ -16,9 +16,10 @@
 
   <ul class="drop d-sm-inline-flex">
 		<!-- Create section drop down -->
+		
     <li class="dropdown mt-2 mx-1">
-      <a href="#" data-toggle="dropdown"> Create New Section <i class="icon-arrow"></i></a>
-      <ul class="dropdown-menu">
+      <button type= "button" data-toggle="dropdown"> Create New Section </button>
+      <ul class="dropdown-menu p-2">
 
 					<div id="create-sec" class="creat-sec" >
 	
@@ -31,8 +32,8 @@
     </li>  
 		<!-- Create user drop down -->
 		<li id="isAdmin" class="dropdown d-none mt-2 mx-1">
-      <a href="#" data-toggle="dropdown">Create New User <i class="icon-arrow"></i></a>
-      <ul class="dropdown-menu">
+      <button type= "button" data-toggle="dropdown">Create New User </button>
+      <ul class="dropdown-menu p-2">
 
 
 	<div id="create-user" class="creat-user" >
@@ -47,8 +48,10 @@
 			<!-- Create url drop down -->
 
 		<li class="dropdown mt-2 mx-1">
-      <a href="#" data-toggle="dropdown"> Create New Record <i class="icon-arrow"></i></a>
-      <ul class="dropdown-menu">
+      <button type= "button" data-toggle="dropdown" class= "d-flex"> 
+				Create New Record 
+			</button>
+      <ul class="dropdown-menu p-2">
      	<div id="create-url" class="creat-url" >
 			
 <%- include("partails/createurl.ejs", {
@@ -61,6 +64,7 @@
 
 		
   </ul>
+		
 	</div>
 
 

@@ -8,7 +8,7 @@ const Counter = require('../database/Schemas/Counter.js');
 router.get('/', async function(req, res) {
 const section = await Section.find({})
 	const urlCount = await Counter.find({}).count()
-
+console.log(__dirname)
 
 	//console.log(urlCount)
 		res.render('index', {
@@ -32,7 +32,7 @@ const section = await Section.find({})
 	const urlCount = await Counter.find({}).count();
 
 
-	//console.log(urlCount)
+	console.log(__dirname)
 		res.render('index', {
 			title: 'Main Page',
 			counter: urlCount,
