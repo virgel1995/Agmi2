@@ -329,7 +329,7 @@ var settingsBtns = document.getElementById("settings")
 //const EditUrlBtns = document.getElementById("EditUrl")
 const EditUrlBtns = document.querySelector(".editUrl")
 const username = document.getElementById("username")
-		username.innerHTML = user.name
+	//	username.innerHTML = user.name
 settingsBtns.classList.remove("d-none")
 			//if (EditUrlBtns) {
 
